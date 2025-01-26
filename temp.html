@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Image Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {    
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            display: none;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button {
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Images (15 in total) -->
+        <img src="https://via.placeholder.com/300x200?text=Image+1" id="img1" alt="Image 1">
+        <img src="https://via.placeholder.com/300x200?text=Image+2" id="img2" alt="Image 2">
+        <img src="https://via.placeholder.com/300x200?text=Image+3" id="img3" alt="Image 3">
+        <img src="https://via.placeholder.com/300x200?text=Image+4" id="img4" alt="Image 4">
+        <img src="https://via.placeholder.com/300x200?text=Image+5" id="img5" alt="Image 5">
+        <img src="https://via.placeholder.com/300x200?text=Image+6" id="img6" alt="Image 6">
+        <img src="https://via.placeholder.com/300x200?text=Image+7" id="img7" alt="Image 7">
+        <img src="https://via.placeholder.com/300x200?text=Image+8" id="img8" alt="Image 8">
+        <img src="https://via.placeholder.com/300x200?text=Image+9" id="img9" alt="Image 9">
+        <img src="https://via.placeholder.com/300x200?text=Image+10" id="img10" alt="Image 10">
+        <img src="https://via.placeholder.com/300x200?text=Image+11" id="img11" alt="Image 11">
+        <img src="https://via.placeholder.com/300x200?text=Image+12" id="img12" alt="Image 12">
+        <img src="https://via.placeholder.com/300x200?text=Image+13" id="img13" alt="Image 13">
+        <img src="https://via.placeholder.com/300x200?text=Image+14" id="img14" alt="Image 14">
+        <img src="https://via.placeholder.com/300x200?text=Image+15" id="img15" alt="Image 15">
+
+        <!-- Navigation buttons -->
+        <div class="buttons">
+            <button onclick="prevImage()">&#9664;</button>
+            <button onclick="nextImage()">&#9654;</button>
+        </div>
+    </div>
+
+    <script>
+        // Linked list node structure
+        class ListNode {
+            constructor(id) {
+                this.id = id;
+                this.next = null;
+                this.prev = null;
+            }
+        }
+
+        // Create a linked list from the image IDs
+        const totalImages = 15;
+        let head = null;
+        let tail = null;
+        let currentNode = null;
+
+        function createLinkedList() {
+            let prevNode = null;
+
+            for (let i = 1; i <= totalImages; i++) {
+                let node = new ListNode(i);
+
+                if (!head) {
+                    head = node; // first node is head
+                }
+
+                if (prevNode) {
+                    prevNode.next = node;
+                    node.prev = prevNode;
+                }
+
+                prevNode = node;
+
+                if (i === totalImages) {
+                    tail = node; // last node is tail
+                }
+            }
+
+            currentNode = head; // start with the first image
+        }
+
+        // Show the current image
+        function displayCurrentImage() {
+            // Hide all images
+            for (let i = 1; i <= totalImages; i++) {
+                document.getElementById('img' + i).style.display = 'none';
+            }
+
+            // Show the current image
+            if (currentNode) {
+                document.getElementById('img' + currentNode.id).style.display = 'block';
+            }
+        }
+
+        // Show next image
+        function nextImage() {
+            if (currentNode && currentNode.next) {
+                currentNode = currentNode.next;
+            } else {
+                currentNode = head; // Loop back to the start
+            }
+            displayCurrentImage();
+        }
+
+        // Show previous image
+        function prevImage() {
+            if (currentNode && currentNode.prev) {
+                currentNode = currentNode.prev;
+            } else {
+                currentNode = tail; // Loop back to the end
+            }
+            displayCurrentImage();
+        }
+
+        // Initialize the linked list and display the first image
+        createLinkedList();
+        displayCurrentImage();
+    </script>
+
+</body>
+</html>
