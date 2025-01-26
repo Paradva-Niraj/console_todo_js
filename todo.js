@@ -15,19 +15,18 @@ function removetodo() {
 
 function display()
 {
-    console.clear()
     for (i of todo) {
         console.log(i);
     }
 }
 
 function runtodo() {
+
     let enter = confirm("run todo or not");
     if(enter)
     {
         while (true) 
         {
-            alert("press ctrl+shift+j")
             let choice = prompt("press 0 for clear todo\nenter 1 for push in todo\nenter 2 for remove last element from todo\n\nenter your choice");
             switch (choice) {
                 case "0":
@@ -35,21 +34,18 @@ function runtodo() {
                     todo = []
                     break;
                 case "1":   
-                    let task = prompt("enter item");
-                    addtodo(task);
+                    let task = prompt("enter item")
+                    addtodo(task)
                     break;
                 case "2":
                     let remove = todo.slice(-1)
-                    let r = confirm("removed item is" + remove);
+                    let r = confirm("removed item is" + remove)
                     if (r) {
                         removetodo();
                     }
                     else {
-                        alert("good choice");
+                        alert("good choice")
                     }
-                    break;
-                case "3":
-                    display();
                     break;
             }
         }
@@ -58,5 +54,10 @@ function runtodo() {
         div = document.getElementById("main").innerHTML="<h1>refresh to start todo</h1>"
     }
 }
+setTimeout(() => {
+    runtodo();
+}, 5000);
 
-runtodo();
+alert("open console ctrl+shift+j or else")
+  
+
