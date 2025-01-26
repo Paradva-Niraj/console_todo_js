@@ -1,3 +1,8 @@
+// learning js
+
+
+
+
 // a=new String('niraj paradva')
 // index=a.indexOf('p')
 // console.log(a.substring(index))
