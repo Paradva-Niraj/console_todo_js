@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
+    <link rel="stylesheet" href="GUIstyle.css">
+    </link>
+    <style>
+        body {
+            background: rgb(0, 0, 0);
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 97vh;
+            align-items: center;
+            /* justify-content: center; */
+        }
+
+        .head {
+            text-transform: uppercase;
+            display: flex;
+            /* justify-content: center; */
+            /* align-items: center; */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 3.5em;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .input {
+            margin: 10px;
+            font-size: 20px;
+            border-radius: 15px;
+            border: 1px solid white;
+            box-sizing: border-box;
+            background-color: #000000;
+            color: rgba(255, 255, 255, 0.705);
+            text-transform: uppercase;
+            width: 600px;
+            padding: 10px 25px;
+        }
+
+        .input::placeholder {
+            color: #ffffff5c;
+            /* Sets the placeholder text color */
+        }
+
+        .button {
+            border-radius: 15px;
+            margin-left: 10px;
+            border: 1px solid white;
+            text-transform: uppercase;
+            width: 80px;
+            height: 45px;
+
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            margin: 25px 10px 10px 10px;
+            align-items: start;
+            justify-content: left;
+        }
+
+        .item-list {
+            display: flex;
+            justify-content: space-between;
+            /* Spaces out the to-do text and delete button */
+            align-items: center;
+            /* Vertically aligns the text and button */
+            color: white;
+            width: 600px;
+            /* Ensures list items align with input width */
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #444;
+            /* Optional: Adds a border around each item */
+            border-radius: 10px;
+            background-color: #222;
+        }
+
+        .todotext {
+            font-size: 2.5rem;
+            flex-grow: 1;
+            /* Ensures the text takes up all available space */
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="head">to do list</h1>
+    </header>
+    <main class="main">
+        <div>
+            <input type="text" id="input" placeholder="enter to do item" class="input">
+            <button type="submit" onclick="additem()" class="button">add</button>
+        </div>
+        <div class="list">
+
+        </div>
+    </main>
+    <footer>
+        <p class="footer"> &copy power by nicxx</p>
+    </footer>
+    <script src="GUIscript.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded",()=>{
+            loaditem();
+        });
+
+        function additem(a) {
+            const list = document.getElementById("input");
+            const listcontainer = document.querySelector(".list")
+            const inputvalue = list.value.trim();
+            // add item
+            const div = document.createElement("div")
+            div.classList.add("item-list")
+
+            // todo test
+            const todotext = document.createElement("span")
+            todotext.textContent = inputvalue;
+            todotext.classList.add("todotext")
+
+
+            // button /
+            const button = document.createElement("button")
+            button.textContent = "delete"
+            button.classList.add("button")
+
+            
+            button.addEventListener("click", () => {
+                listcontainer.removeChild(div);
+                savestate();
+            });
+            
+            
+
+            div.appendChild(todotext);
+            div.appendChild(button);
+            
+            listcontainer.appendChild(div);
+            
+            savestate();
+            list.value = "";
+        }
+        function savestate()
+        {
+            const listcontainer = document.querySelector(".list")
+            const items = []
+
+            listcontainer.querySelectorAll(".item-list").forEach(item => {
+                const text = item.querySelector(".todotext").textContent
+                items.push(text)
+            });
+
+            localStorage.setItem("todolist",JSON.stringify(items));
+        }
+
+        function loaditem(){
+            
+            const items = localStorage.getItem("todolist")
+            const listcontainer = document.querySelector(".list")
+            if(items)
+            {
+                const item = JSON.parse(items)
+
+                item.forEach(itemtext => {
+
+                    const div = document.createElement("div")
+                    div.classList.add("item-list")
+                    
+                    
+                    const todotext =document.createElement("sapn")
+                    todotext.classList.add("todotext")
+                    todotext.textContent = itemtext
+                    
+                    const button = document.createElement("button")
+                    button.classList.add("button")
+                    button.textContent = "delete"
+                    
+                    button.addEventListener("click",() => {
+                        listcontainer.removeChild(div)
+                        savestate();
+                    });
+                    
+                    div.appendChild(todotext)
+                    div.appendChild(button)
+                    
+                    listcontainer.appendChild(div)
+                    
+                });  
+            
+            }
+            
+            
+        }
+
+    </script>
+</body>
+
+</html>
