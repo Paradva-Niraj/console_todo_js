@@ -1,0 +1,68 @@
+body{
+    background-color: black;
+    color: aliceblue;  
+}
+
+header h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game{
+    height: 60vmin;
+    width: 60vmin;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 1.5vmin;
+}
+
+.button{
+    height: 18vmin;
+    width: 18vmin;
+    font-size: 15vmin;
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 0, 0, 0.19);
+    text-align: center;
+    border-radius: 2vmin;
+    border: 1.5px solid brown;
+}
+
+.manu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vmin;
+    margin-bottom: 2vmi;
+}
+
+.reset , .play{
+    height: 5vmin;
+    border-radius: 1.5vmin;
+    width: 13vmin;
+    background-color: black;
+    color: white;
+    font-size: large;
+
+}
+
+
+footer p{
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
