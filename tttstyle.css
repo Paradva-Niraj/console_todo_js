@@ -9,7 +9,7 @@ header h1{
     align-items: center;
     text-transform: uppercase;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 3rem;
+    font-size: 5vw;
     background: -webkit-linear-gradient(#eee, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -22,8 +22,8 @@ header h1{
 }
 
 .game{
-    height: 60vmin;
-    width: 60vmin;
+    height: 35vmin;
+    width: 35vmin;
     flex-wrap: wrap;
     display: flex;
     justify-content: center;
@@ -32,30 +32,37 @@ header h1{
 }
 
 .button{
-    height: 18vmin;
-    width: 18vmin;
-    font-size: 15vmin;
+    height: 10vmin;
+    width: 10vmin;
+    font-size: 4vw;
     box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 0, 0, 0.19);
     text-align: center;
-    border-radius: 2vmin;
+    border-radius: 2px;
     border: 1.5px solid brown;
+}
+
+.winner{
+    font-size: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .manu{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5vmin;
-    margin-bottom: 2vmi;
+    /* margin-top: 5vmin; */
+    margin-bottom: 2vw;
 }
 
 .reset , .play{
-    height: 5vmin;
+    height: 5vw;
     border-radius: 1.5vmin;
-    width: 13vmin;
+    width: 13vw;
     background-color: black;
     color: white;
-    font-size: large;
+    font-size: 3vw;
 
 }
 
@@ -65,4 +72,5 @@ footer p{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1vw;
 }
